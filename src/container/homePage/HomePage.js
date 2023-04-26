@@ -1,9 +1,9 @@
 import './HomePage.css';
-import BannerImage from '../assets/images/banner.png'
+import BannerImage from '../../assets/images/banner.png'
 
-import { Header } from './Header';
+import { Header } from '../header/Header';
 import { HomePageIntroductionGrid } from './HomePageIntroductionGrid';
-import { Footer } from './Footer';
+import { Footer } from '../footer/Footer';
 
 function HomePage() {
   return (
@@ -34,4 +34,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export { HomePage };
