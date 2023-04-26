@@ -1,0 +1,6 @@
+.homepageIntroduction {
+  display: flex;
+  column-gap: 5%;
+  justify-content: center;
+  margin: 1rem auto;
+}

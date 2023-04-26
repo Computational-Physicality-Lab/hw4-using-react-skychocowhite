@@ -1,0 +1,18 @@
+.menu {
+  height: 3rem;
+  font-family: 'Catamaran', sans-serif;
+  display: flex;
+  column-gap: 3.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu a {
+  color: #c51230;
+  transition-duration: 0.2s;
+}
+
+.menu a:hover {
+  color: red;
+  border-bottom: 5px solid red;
+}

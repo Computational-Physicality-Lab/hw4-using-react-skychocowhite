@@ -1,0 +1,21 @@
+.Footer {
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #c51230;
+}
+
+.Footer a {
+  color: white;
+  transition-duration: 0.2s;
+}
+
+.Footer a:hover {
+  border-bottom: 5px solid white;
+}
+
+.Footer p {
+  color: white;
+  font-weight: bold;
+}
