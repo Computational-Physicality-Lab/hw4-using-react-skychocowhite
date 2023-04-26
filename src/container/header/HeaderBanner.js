@@ -1,27 +1,29 @@
 import './HeaderBanner.css';
+import { routes } from '../../shared/appRoutes';
 import LogoImage from '../../assets/images/logo.png';
 import CartImage from '../../assets/images/cart.png';
+import { Link, NavLink as RouterNavLink } from 'react-router-dom';
 
 function HeaderBanner() {
   return (
     <div className="HeaderBanner">
       <div id="headerLogo">
-        <a href="./">
+        <Link tag={RouterNavLink} to={routes.home}>
           <img src={LogoImage} alt="SSUI logo, a dog, a T-shirt, and a click" />
-        </a>
+        </Link>
       </div>
 
       <div id="headerCompany">
         <p id="companyName">Scotty Shirts U Illustrate (SSUI)</p>
       </div>
 
-      <a className="headerCart" href="not_implemented.html" target="_self">
+      <Link className='headerCart' tag={RouterNavLink} to={routes.notFound}>
         <div>
           <img src={CartImage} alt="A shopping cart" />
           <p>0</p>
         </div>
-      </a>
-    </div>
+      </Link>
+    </div >
   );
 }
 
