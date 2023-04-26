@@ -5,6 +5,8 @@
   column-gap: 3.5rem;
   justify-content: center;
   align-items: center;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
 }
 
 .menu a {
