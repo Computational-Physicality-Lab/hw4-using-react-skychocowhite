@@ -14,13 +14,13 @@ function HeaderBanner() {
       </div>
 
       <div id="headerCompany">
-        <p id="companyName">Scotty Shirts U Illustrate (SSUI)</p>
+        <div id="companyName">Scotty Shirts U Illustrate (SSUI)</div>
       </div>
 
       <Link className='headerCart' tag={RouterNavLink} to={routes.notFound}>
         <div>
           <img src={CartImage} alt="A shopping cart" />
-          <p>0</p>
+          <div>0</div>
         </div>
       </Link>
     </div >

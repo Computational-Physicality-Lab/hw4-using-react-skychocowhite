@@ -2,13 +2,14 @@
   border-top: 2rem solid #c51230;
   height: 80%;
   display: flex;
-  column-gap: 3.5rem;
+  column-gap: 3rem;
   justify-content: center;
   align-items: center;
 }
 
 #headerLogo {
   max-width: 40%;
+  margin-bottom: 0.2rem;
 }
 
 #headerLogo img {
@@ -28,9 +29,10 @@
   font-family: 'Catamaran', sans-serif;
 }
 
-.headerCart div {
+.headerCart div:first-child {
   max-width: 100%;
-  max-height: 4rem;
+  min-height: 3rem;
+  max-height: 5rem;
   display: flex;
   column-gap: 0.5rem;
   justify-content: center;
@@ -44,7 +46,7 @@
   border: 3px solid transparent;
 }
 
-.headerCart:hover div {
+.headerCart:hover div:first-child {
   background-color: white;
   border: 3px solid #c51230;
 }
@@ -59,13 +61,12 @@
   filter: invert(13%) sepia(51%) saturate(6619%) hue-rotate(344deg) brightness(99%) contrast(98%);
 }
 
-.headerCart p {
+.headerCart div:nth-child(2) {
   font-size: 1.5rem;
   color: white;
   transition-duration: 0.2s;
-  margin-top: 1rem;
 }
 
-.headerCart:hover p {
+.headerCart:hover div:nth-child(2) {
   color: #c51230;
 }
