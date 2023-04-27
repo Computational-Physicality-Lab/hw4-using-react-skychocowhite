@@ -1,7 +1,7 @@
 import './HeaderBanner.css';
 import { routes } from '../../shared/appRoutes';
 import LogoImage from '../../assets/images/logo.png';
-import CartImage from '../../assets/images/cart.png';
+import CartImage from '../../assets/images/cart.svg';
 import { Link, NavLink as RouterNavLink } from 'react-router-dom';
 
 function HeaderBanner() {

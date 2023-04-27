@@ -15,6 +15,7 @@
   height: 5rem;
   margin-left: 1rem;
   transition-duration: 0.2s;
+  border-bottom: 5px solid transparent;
 }
 
 #headerLogo img:hover {
@@ -51,6 +52,7 @@
 .headerCart img {
   height: 2.5rem;
   transition-duration: 0.2s;
+  filter: invert(100%);
 }
 
 .headerCart:hover img {
@@ -61,6 +63,7 @@
   font-size: 1.5rem;
   color: white;
   transition-duration: 0.2s;
+  margin-top: 1rem;
 }
 
 .headerCart:hover p {

@@ -1,14 +1,17 @@
 import './NavBar.css';
 
+import { routes } from '../../shared/appRoutes';
+import { Link, NavLink as RouterNavLink } from 'react-router-dom';
+
 function NavBar() {
   return (
     <div className="menu" aria-label="Header menu links">
-      <a href="products.html" target="_self">T-SHIRTS</a>
-      <a href="not_implemented.html" target="_self">CREATE FROM PICTURE</a>
-      <a href="create-your-own/index.html" target="_self">CREATE YOUR OWN</a>
-      <a href="not_implemented.html" target="_self">ABOUT US</a>
-      <a href="not_implemented.html" target="_self">LOG IN</a>
-    </div>
+      <Link tag={RouterNavLink} to={routes.product}> T-SHIRTS </Link>
+      <Link tag={RouterNavLink} to={routes.notFound}> CREATE FROM PICTURE </Link>
+      <Link tag={RouterNavLink} to={routes.notFound}> CREATE YOUR OWN </Link>
+      <Link tag={RouterNavLink} to={routes.notFound}> ABOUT US </Link>
+      <Link tag={RouterNavLink} to={routes.notFound}> LOG IN </Link>
+    </div >
   );
 }
 
