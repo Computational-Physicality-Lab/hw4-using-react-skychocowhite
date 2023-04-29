@@ -14,15 +14,15 @@ function DetailColorButton(props) {
 
   let buttonElement;
   if (color === 'black') {
-    buttonElement = <button key="black" className='shirtColorButton' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{
+    buttonElement = <button key="black" className='shirtColorButton' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={props.onClick} style={{
       color: isHover ? "#c51230" : "white",
       backgroundColor: isHover ? "white" : "black"
-    }}> white </button>
+    }}>white</button>
   } else {
-    buttonElement = <button key={color} className='shirtColorButton' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{
+    buttonElement = <button key={color} className='shirtColorButton' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={props.onClick} style={{
       color: isHover ? "#c51230" : "black",
       backgroundColor: isHover ? "white" : color
-    }}> {color} </button>
+    }}>{color}</button>
   }
 
   return (

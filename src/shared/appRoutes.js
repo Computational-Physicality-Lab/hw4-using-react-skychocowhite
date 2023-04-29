@@ -1,8 +1,9 @@
 const routes = {
   home: "/",
   product: "/product",
-  notFound: "/not-found",
   productDetail: "/product/detail",
+  notFound: "/not-found",
+  cart: "/cart"
 };
 
 export { routes };

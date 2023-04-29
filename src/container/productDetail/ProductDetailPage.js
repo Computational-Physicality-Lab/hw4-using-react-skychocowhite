@@ -11,7 +11,24 @@ function ProductDetailPage() {
   const location = useLocation();
   const shirt = location.state?.shirt;
   const shirtColors = Object.keys(shirt.colors);
-  // console.log(shirt);
+
+  function changeShirtImg() {
+    if (shirtColor === 'default') {
+      return shirt.default[shirtSide];
+    } else {
+      return shirt.colors[shirtColor][shirtSide];
+    }
+  }
+
+  const [shirtSide, setShirtSide] = useState("front");
+  function changeSide(event) {
+    setShirtSide(event.target.innerHTML.toLowerCase());
+  }
+
+  const [shirtColor, setShirtColor] = useState("default");
+  function changeShirtColor(event) {
+    setShirtColor(event.target.innerHTML);
+  }
 
   const quantityList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
   const [buyQuantity, setBuyQuantity] = useState(1);
@@ -48,15 +65,15 @@ function ProductDetailPage() {
       <div className="shirtDetailSection">
         <h2> {shirt.name} </h2>
         <div id="shirtInformation">
-          <img id="shirtImg" src={shirt.default.front} alt="A T-shirt" />
+          <img id="shirtImg" src={changeShirtImg()} alt="A T-shirt" />
           <div>
             <div id="shirtPrice">{shirt.price}</div>
             <div id="shirtDescription">{shirt.description}</div>
 
             <div id="shirtSides">
               <span id="shirtSide"> Side: </span><br></br>
-              <button key="sideFront" className="shirtSideButton"> Front </button>
-              <button key="sideBack" className="shirtSideButton"> Back </button>
+              <button key="sideFront" className="shirtSideButton" onClick={changeSide}>Front</button>
+              <button key="sideBack" className="shirtSideButton" onClick={changeSide}>Back</button>
             </div>
 
             <div id="shirtColors">
@@ -64,7 +81,7 @@ function ProductDetailPage() {
               <div id="shirtColorButtons">
                 {shirtColors.map((color) => {
                   return (
-                    <DetailColorButton key={color} color={color}></DetailColorButton>
+                    <DetailColorButton key={color} color={color} onClick={changeShirtColor}></DetailColorButton>
                   );
                 })}
               </div>
@@ -118,4 +135,4 @@ function ProductDetailPage() {
   );
 }
 
-export { ProductDetailPage };
+export { ProductDetailPage }; 
