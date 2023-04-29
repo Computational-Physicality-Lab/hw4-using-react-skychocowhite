@@ -31,9 +31,9 @@ function ProductShirtGrid(props) {
       </p>
 
       <div className="shirtButtons">
-        <a id="seePageButton">
+        <Link className='seePageButton' tag={RouterNavLink} to={routes.productDetail} state={{ shirt: shirt }}>
           See Page
-        </a>
+        </Link>
       </div>
 
     </div>
