@@ -1,13 +1,16 @@
 import './ProductShirtGrid.css';
 
+import { routes } from '../../shared/appRoutes';
+import { Link, NavLink as RouterNavLink } from 'react-router-dom';
+
 function ProductShirtGrid(props) {
   let shirt = props.shirt;
   let shirtColors = Object.keys(shirt.colors);
   let shirtAvailableMsg;
 
-  if (shirtColors.length == 0) {
+  if (shirtColors.length === 0) {
     shirtAvailableMsg = "Not avaliable right now";
-  } else if (shirtColors.length == 1) {
+  } else if (shirtColors.length === 1) {
     shirtAvailableMsg = "Available in 1 color";
   } else {
     shirtAvailableMsg = `Available in ${shirtColors.length} colors`;
@@ -15,9 +18,9 @@ function ProductShirtGrid(props) {
 
   return (
     <div className="ProductShirtGrid">
-      <a>
-        <img src={shirt.colors[shirtColors[0]].front}></img>
-      </a>
+      <Link tag={RouterNavLink} to={routes.productDetail} state={{ shirt: shirt }}>
+        <img src={shirt.default.front}></img>
+      </Link>
 
       <p className="shirtName">
         {shirt.name}

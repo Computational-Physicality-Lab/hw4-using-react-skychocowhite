@@ -29,6 +29,10 @@
   font-family: 'Catamaran', sans-serif;
 }
 
+.headerCart {
+  text-decoration: none;
+}
+
 .headerCart div:first-child {
   max-width: 100%;
   min-height: 3rem;
@@ -61,12 +65,12 @@
   filter: invert(13%) sepia(51%) saturate(6619%) hue-rotate(344deg) brightness(99%) contrast(98%);
 }
 
-.headerCart div:nth-child(2) {
+#cartCount {
   font-size: 1.5rem;
   color: white;
   transition-duration: 0.2s;
 }
 
-.headerCart:hover div:nth-child(2) {
+.headerCart:hover #cartCount {
   color: #c51230;
 }

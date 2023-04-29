@@ -20,9 +20,9 @@ function HeaderBanner() {
       <Link className='headerCart' tag={RouterNavLink} to={routes.notFound}>
         <div>
           <img src={CartImage} alt="A shopping cart" />
-          <div>0</div>
+          <div id='cartCount'> 0 </div>
         </div>
-      </Link>
+      </Link >
     </div >
   );
 }

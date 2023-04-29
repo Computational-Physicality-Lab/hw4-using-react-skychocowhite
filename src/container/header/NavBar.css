@@ -11,7 +11,9 @@
 
 .menu a {
   color: #c51230;
+  text-decoration: none;
   transition-duration: 0.2s;
+  border-bottom: 5px solid transparent;
 }
 
 .menu a:hover {
