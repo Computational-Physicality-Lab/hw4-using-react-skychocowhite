@@ -28,23 +28,23 @@ function ProductDetailPage() {
 
   const [shirtImg, setShirtImg] = useState(useLocation().state?.defaultImg);
 
-  function changeShirtImg(newColor, newSide) {
-    if (newColor === undefined || newSide === undefined) {
-      setShirtImg(notFound);
-    } else if (newColor === 'default') {
-      if (shirt.default === undefined || shirt.default[newSide] === undefined) {
-        setShirtImg(notFound);
-      } else {
-        setShirtImg(shirt.default[newSide]);
-      }
-    } else {
-      if (shirt.colors[newColor] === undefined || shirt.colors[newColor][newSide] === undefined) {
-        setShirtImg(notFound);
-      } else {
-        setShirtImg(shirt.colors[newColor][newSide]);
-      }
-    }
-  }
+  // function changeShirtImg(newColor, newSide) {
+  //   if (newColor === undefined || newSide === undefined) {
+  //     setShirtImg(notFound);
+  //   } else if (newColor === 'default') {
+  //     if (shirt.default === undefined || shirt.default[newSide] === undefined) {
+  //       setShirtImg(notFound);
+  //     } else {
+  //       setShirtImg(shirt.default[newSide]);
+  //     }
+  //   } else {
+  //     if (shirt.colors[newColor] === undefined || shirt.colors[newColor][newSide] === undefined) {
+  //       setShirtImg(notFound);
+  //     } else {
+  //       setShirtImg(shirt.colors[newColor][newSide]);
+  //     }
+  //   }
+  // }
 
   useEffect(() => {
     if (shirtColor === undefined || shirtSide === undefined) {
@@ -72,9 +72,23 @@ function ProductDetailPage() {
         setShirtImg(notFound);
       }
     } else {
-      changeShirtImg(shirtColor, shirtSide);
+      if (shirtColor === undefined || shirtSide === undefined) {
+        setShirtImg(notFound);
+      } else if (shirtColor === 'default') {
+        if (shirt.default === undefined || shirt.default[shirtSide] === undefined) {
+          setShirtImg(notFound);
+        } else {
+          setShirtImg(shirt.default[shirtSide]);
+        }
+      } else {
+        if (shirt.colors[shirtColor] === undefined || shirt.colors[shirtColor][shirtSide] === undefined) {
+          setShirtImg(notFound);
+        } else {
+          setShirtImg(shirt.colors[shirtColor][shirtSide]);
+        }
+      }
     }
-  }, [shirtColor, shirtSide, shirt.default.front, shirt.default.back, shirt.colors, shirtColors, changeShirtImg]);
+  }, [shirtColor, shirtSide, shirt.default, shirt.colors, shirtColors]);
 
   const quantityList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
   const [buyQuantity, setBuyQuantity] = useState(1);
