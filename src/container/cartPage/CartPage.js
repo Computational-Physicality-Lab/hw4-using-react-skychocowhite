@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Footer } from '../footer/Footer';
 import { Header } from '../header/Header';
 import './CartPage.css';
@@ -19,7 +19,7 @@ function CartPage() {
       .reduce((a, b) => a + b, 0.0)
   );
   const [shippingValue, setShippingValue] = useState(
-    shopList.orders.length == 0 ? 0.0 : 6.95
+    shopList.orders.length === 0 ? 0.0 : 6.95
   );
 
   function updateState() {
@@ -27,7 +27,7 @@ function CartPage() {
     setShopList(newList);
     setShirtCounts(newList.orders.map((order) => parseInt(order.quantity)).reduce((a, b) => a + b, 0.0));
     setSubtotal(newList.orders.map((order) => parseFloat(order.quantity) * parseFloat(order.shirt.price.substring(1))).reduce((a, b) => a + b, 0.0));
-    setShippingValue(newList.orders.length == 0 ? 0.0 : 6.95);
+    setShippingValue(newList.orders.length === 0 ? 0.0 : 6.95);
   }
 
   function changeOrderQuantity(orderId, newQuantity) {
