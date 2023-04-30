@@ -28,24 +28,6 @@ function ProductDetailPage() {
 
   const [shirtImg, setShirtImg] = useState(useLocation().state?.defaultImg);
 
-  // function changeShirtImg(newColor, newSide) {
-  //   if (newColor === undefined || newSide === undefined) {
-  //     setShirtImg(notFound);
-  //   } else if (newColor === 'default') {
-  //     if (shirt.default === undefined || shirt.default[newSide] === undefined) {
-  //       setShirtImg(notFound);
-  //     } else {
-  //       setShirtImg(shirt.default[newSide]);
-  //     }
-  //   } else {
-  //     if (shirt.colors[newColor] === undefined || shirt.colors[newColor][newSide] === undefined) {
-  //       setShirtImg(notFound);
-  //     } else {
-  //       setShirtImg(shirt.colors[newColor][newSide]);
-  //     }
-  //   }
-  // }
-
   useEffect(() => {
     if (shirtColor === undefined || shirtSide === undefined) {
       if (shirt.default?.front !== undefined) {
