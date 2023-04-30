@@ -3,15 +3,28 @@ import './CartItem.css';
 import { useState } from 'react';
 import { Link, NavLink as RouterNavLink } from 'react-router-dom';
 import { routes } from '../../shared/appRoutes';
+import notFound from '../../assets/shirt_images/not-found.png';
 
 function CartItem(props) {
   const order = props.order;
 
   function getShirtImg() {
     if (order.color === 'default') {
-      return order.shirt.default.front;
+      if (order.shirt.default?.front !== undefined) {
+        return order.shirt.default.front;
+      } else if (order.shirt.default?.back !== undefined) {
+        return order.shirt.default.back;
+      } else {
+        return notFound;
+      }
     } else {
-      return order.shirt.colors[order.color].front;
+      if (order.shirt.colors[order.color].front !== undefined) {
+        return order.shirt.colors[order.color].front;
+      } else if (order.shirt.colors[order.color].back !== undefined) {
+        return order.shirt.colors[order.color].back;
+      } else {
+        return notFound;
+      }
     }
   }
 

@@ -17,21 +17,18 @@ function ProductDetailPage() {
   const [shirtSide, setShirtSide] = useState(useLocation().state?.defaultSide);
   function changeSide(event) {
     let newSide = event.target.innerHTML.toLowerCase();
-    console.log(newSide);
     setShirtSide(newSide);
   }
 
   const [shirtColor, setShirtColor] = useState(useLocation().state?.defaultColor);
   function changeShirtColor(event) {
     let newColor = event.target.innerHTML;
-    console.log(newColor);
     setShirtColor(newColor);
   }
 
   const [shirtImg, setShirtImg] = useState(useLocation().state?.defaultImg);
 
   function changeShirtImg(newColor, newSide) {
-    console.log(newColor, newSide);
     if (newColor === undefined || newSide === undefined) {
       setShirtImg(notFound);
     } else if (newColor === 'default') {
@@ -44,11 +41,9 @@ function ProductDetailPage() {
       if (shirt.colors[newColor] === undefined || shirt.colors[newColor][newSide] === undefined) {
         setShirtImg(notFound);
       } else {
-        console.log(shirt.colors[newColor][newSide]);
         setShirtImg(shirt.colors[newColor][newSide]);
       }
     }
-    console.log(shirtImg);
   }
 
   useEffect(() => {
