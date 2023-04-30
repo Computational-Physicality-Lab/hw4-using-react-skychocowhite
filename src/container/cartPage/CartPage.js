@@ -1,94 +1,76 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Footer } from '../footer/Footer';
 import { Header } from '../header/Header';
 import './CartPage.css';
+import { CartItem } from './CartItem';
+import { Link, NavLink as RouterNavLink } from 'react-router-dom';
+import { routes } from '../../shared/appRoutes';
 
 function CartPage() {
-  const [productCount, setProductCount] = useState(0);
+  let shopList = JSON.parse(localStorage.getItem('shopList'));
+  console.log(shopList);
+
+  const [shirtCounts, setShirtCounts] = useState(
+    shopList.orders.map((order) => parseInt(order.quantity)).reduce((a, b) => a + b, 0)
+  );
+
+  const [subtotal, setSubtotal] = useState(
+    shopList.orders.map((order) => parseFloat(order.quantity) * parseFloat(order.shirt.price.substring(1)))
+      .reduce((a, b) => a + b, 0.0)
+  );
+
+  const [shippingValue, setShippingValue] = useState(
+    shopList.orders.length == 0 ? 0.0 : 6.95
+  );
 
   return (
     <div className='CartPage'>
       <Header></Header>
 
-      <div id="cartProductsBar">
-        <h2> My Cart (0)</h2>
+      <div id="cartSection">
+        <div id="cartProductsBar">
+          <h2>My Cart ({shirtCounts})</h2>
+          {shopList.orders.map((order, index) => {
+            return (
+              <CartItem key={order.id} order={order}></CartItem>
+            );
+          })}
+        </div>
+
+        <div id="cartSummaryBar">
+          <div id="cartSummaryBlock">
+            <h3>Order Summary</h3>
+
+            <div id="subtotalSection">
+              <div id="subtotalTitle">Subtotal:</div>
+              <div id="subtotalValue">${subtotal.toFixed(2)}</div>
+            </div>
+
+            <div id="shippingSection">
+              <div id="shippingTitle">Est. Shipping:</div>
+              <div id="shippingValue">${shippingValue}</div>
+            </div>
+
+            <hr></hr>
+
+            <div id="totalSection">
+              <div id="totalTitle">Total:</div>
+              <div id="totalValue">${(subtotal + shippingValue).toFixed(2)}</div>
+            </div>
+
+            <div id="checkoutSection">
+              <Link id="checkoutButton" tag={RouterNavLink} to={routes.notFound}>Sign in and Checkout</Link>
+            </div>
+          </div>
+
+          <div id="keepShoppingSection">
+            <Link id="keepShoppingButton" tag={RouterNavLink} to={routes.product}>Continue Shopping</Link>
+          </div>
+        </div>
       </div>
 
       <Footer></Footer>
-    </div>
-
-    //     <div className="ProductDetailPage">
-    //   <Header></Header>
-    //   <div className="shirtDetailSection">
-    //     <h2> {shirt.name} </h2>
-    //     <div id="shirtInformation">
-    //       <img id="shirtImg" src={shirt.default.front} alt="A T-shirt" />
-    //       <div>
-    //         <div id="shirtPrice">{shirt.price}</div>
-    //         <div id="shirtDescription">{shirt.description}</div>
-
-    //         <div id="shirtSides">
-    //           <span id="shirtSide"> Side: </span><br></br>
-    //           <button key="sideFront" className="shirtSideButton"> Front </button>
-    //           <button key="sideBack" className="shirtSideButton"> Back </button>
-    //         </div>
-
-    //         <div id="shirtColors">
-    //           <span id="shirtColor"> Color: </span><br></br>
-    //           <div id="shirtColorButtons">
-    //             {shirtColors.map((color) => {
-    //               return (
-    //                 <DetailColorButton key={color} color={color}></DetailColorButton>
-    //               );
-    //             })}
-    //           </div>
-    //         </div>
-
-    //         <div id="shirtQuantities">
-    //           <span id="shirtQuantity"> Quantity: </span><br></br>
-    //           <Dropdown isOpen={quantityDropDownOpen} toggle={quantityDropDownToggle} direction="up">
-    //             <DropdownToggle caret>{buyQuantity}</DropdownToggle>
-    //             <DropdownMenu>
-    //               {quantityList.map((quantity) => {
-    //                 return (
-    //                   <DropdownItem key={quantity} onClick={clickQuantity}>{quantity}</DropdownItem>
-    //                 );
-    //               })}
-    //             </DropdownMenu>
-    //           </Dropdown>
-    //         </div>
-
-    //         <div id="shirtSizes">
-    //           <span id="shirtSize"> Size: </span><br></br>
-    //           <Dropdown isOpen={sizeDropDownOpen} toggle={sizeDropDownToggle} direction='up'>
-    //             <DropdownToggle caret>{buySize}</DropdownToggle>
-    //             <DropdownMenu>
-    //               <DropdownItem header>Women</DropdownItem>
-    //               {sizeList.filter((size) => size.startsWith("Women")).map((size) => {
-    //                 return (
-    //                   <DropdownItem key={size} onClick={clickSize}>{size}</DropdownItem>
-    //                 );
-    //               })}
-    //               <DropdownItem divider></DropdownItem>
-    //               <DropdownItem header>Men</DropdownItem>
-    //               {sizeList.filter((size) => size.startsWith("Men")).map((size) => {
-    //                 return (
-    //                   <DropdownItem key={size} onClick={clickSize}>{size}</DropdownItem>
-    //                 );
-    //               })}
-    //             </DropdownMenu>
-    //           </Dropdown>
-    //         </div>
-
-    //         {/* <Link></Link> */}
-    //         <div id="shirtSubmit">
-    //           <button id="submitButton">Add To Cart</button>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <Footer></Footer>
-    // </div >
+    </div >
   );
 }
 

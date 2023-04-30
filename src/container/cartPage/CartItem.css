@@ -1,0 +1,70 @@
+.CartItem>hr {
+  width: 100%;
+  border: 2px solid #c51230;
+  opacity: 1;
+}
+
+#itemSection {
+  display: flex;
+  column-gap: 1rem;
+}
+
+#orderImg {
+  width: 35%;
+}
+
+#orderImg img {
+  width: 100%;
+}
+
+#quantitySection {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+#orderInformation>div {
+  margin-bottom: 1rem;
+}
+
+#quantityDropdownToggle {
+  color: white;
+  background-color: #c51230;
+  border: 2px solid #c51230;
+  transition-duration: 0.2s;
+}
+
+#quantityDropdownToggle:hover,
+#quantityDropdownToggle[aria-expanded="true"] {
+  color: #c51230;
+  background-color: white;
+}
+
+#quantityTitle,
+#colorTitle,
+#sizeTitle,
+#priceTitle {
+  font-weight: bold;
+  color: gray;
+}
+
+#colorValue,
+#sizeValue,
+#priceValue {
+  font-weight: bold;
+  color: #c51230
+}
+
+#removeButton {
+  color: white;
+  background-color: #c51230;
+  border: 2px solid #c51230;
+  border-radius: 5px;
+  padding: 3% 8%;
+  transition-duration: 0.2s;
+}
+
+#removeButton:hover {
+  color: #c51230;
+  background-color: white;
+}

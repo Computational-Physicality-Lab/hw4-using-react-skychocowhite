@@ -1,15 +1,15 @@
 import { Footer } from '../footer/Footer';
 import { Header } from '../header/Header';
 import './ProductDetailPage.css';
-import { useLocation } from 'react-router-dom';
+import { routes } from '../../shared/appRoutes';
+import { Link, NavLink as RouterNavLink, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { DetailColorButton } from './DetailColorButton';
 import { useState } from 'react';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 
 function ProductDetailPage() {
-  const location = useLocation();
-  const shirt = location.state?.shirt;
+  const shirt = useLocation().state?.shirt;
   const shirtColors = Object.keys(shirt.colors);
 
   function changeShirtImg() {
@@ -39,6 +39,7 @@ function ProductDetailPage() {
   }
 
   const sizeList = [
+    "Size:",
     "Women's XS",
     "Women's S",
     "Women's M",
@@ -52,11 +53,28 @@ function ProductDetailPage() {
     "Men's XL",
     "Men's 2XL"
   ];
-  const [buySize, setBuySize] = useState("Men's M");
+  const [buySize, setBuySize] = useState("Size:");
   const [sizeDropDownOpen, setSizeDropDownOpen] = useState(false);
   const sizeDropDownToggle = () => setSizeDropDownOpen((prevState) => !prevState);
   function clickSize(event) {
     setBuySize(event.target.innerHTML);
+  }
+
+  function addShopItem() {
+    let shopList = JSON.parse(localStorage.getItem('shopList')) || {
+      orderId: 0,
+      orders: []
+    };
+
+    shopList.orders.push({
+      id: shopList.orderId,
+      shirt: shirt,
+      quantity: buyQuantity,
+      color: shirtColor,
+      size: buySize
+    });
+    shopList.orderId += 1;
+    localStorage.setItem('shopList', JSON.stringify(shopList));
   }
 
   return (
@@ -90,7 +108,7 @@ function ProductDetailPage() {
             <div id="shirtQuantities">
               <span id="shirtQuantity"> Quantity: </span><br></br>
               <Dropdown isOpen={quantityDropDownOpen} toggle={quantityDropDownToggle} direction="up">
-                <DropdownToggle caret>{buyQuantity}</DropdownToggle>
+                <DropdownToggle id="shirtQuantityDropdownToggle" caret>{buyQuantity}</DropdownToggle>
                 <DropdownMenu>
                   {quantityList.map((quantity) => {
                     return (
@@ -104,17 +122,9 @@ function ProductDetailPage() {
             <div id="shirtSizes">
               <span id="shirtSize"> Size: </span><br></br>
               <Dropdown isOpen={sizeDropDownOpen} toggle={sizeDropDownToggle} direction='up'>
-                <DropdownToggle caret>{buySize}</DropdownToggle>
+                <DropdownToggle id="shirtSizeDropdownToggle" caret>{buySize}</DropdownToggle>
                 <DropdownMenu>
-                  <DropdownItem header>Women</DropdownItem>
-                  {sizeList.filter((size) => size.startsWith("Women")).map((size) => {
-                    return (
-                      <DropdownItem key={size} onClick={clickSize}>{size}</DropdownItem>
-                    );
-                  })}
-                  <DropdownItem divider></DropdownItem>
-                  <DropdownItem header>Men</DropdownItem>
-                  {sizeList.filter((size) => size.startsWith("Men")).map((size) => {
+                  {sizeList.map((size) => {
                     return (
                       <DropdownItem key={size} onClick={clickSize}>{size}</DropdownItem>
                     );
@@ -123,9 +133,10 @@ function ProductDetailPage() {
               </Dropdown>
             </div>
 
-            {/* <Link></Link> */}
-            <div id="shirtSubmit">
-              <button id="submitButton">Add To Cart</button>
+            <div id='shirtSubmit'>
+              <Link className="submitButton" tag={RouterNavLink} to={routes.cart} onClick={addShopItem} style={{
+                pointerEvents: buySize.startsWith("Size") ? "none" : ""
+              }}>Add To Cart</Link>
             </div>
           </div>
         </div>

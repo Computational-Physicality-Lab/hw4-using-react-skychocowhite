@@ -1,0 +1,89 @@
+#cartSection {
+  display: flex;
+  justify-content: center;
+  column-gap: 3rem;
+  width: 90%;
+  margin: 1rem auto;
+}
+
+#cartProductsBar {
+  margin-right: 0.5rem;
+  width: 50%;
+}
+
+#cartSummaryBar {
+  width: 30%;
+  height: 100%;
+  margin-top: 3rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 1rem;
+}
+
+#cartSummaryBlock {
+  padding: 1rem;
+  border: 2px solid #c51230;
+  border-radius: 10px;
+}
+
+#cartSummaryBlock>hr {
+  margin: 0.5rem 0 0.5rem auto;
+  width: 33%;
+  border: 1px solid #c51230;
+  opacity: 1;
+}
+
+#subtotalSection,
+#shippingSection,
+#totalSection {
+  display: flex;
+  justify-content: space-between;
+}
+
+#subtotalTitle,
+#shippingTitle {
+  color: gray;
+  font-weight: bold;
+}
+
+#subtotalValue,
+#shippingValue {
+  color: #c51230;
+  font-weight: bold;
+}
+
+#totalTitle {
+  color: gray;
+  font-weight: bold;
+  font-size: large;
+}
+
+#totalValue {
+  color: #c51230;
+  font-weight: bold;
+  font-size: large;
+}
+
+#checkoutSection,
+#keepShoppingSection {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+#checkoutButton,
+#keepShoppingButton {
+  text-decoration: none;
+  color: white;
+  background-color: #c51230;
+  border: 2px solid #c51230;
+  border-radius: 5px;
+  padding: 2% 5%;
+  transition-duration: 0.2s;
+}
+
+#checkoutButton:hover,
+#keepShoppingButton:hover {
+  color: #c51230;
+  background-color: white;
+}
