@@ -3,10 +3,10 @@ import './Header.css';
 import { HeaderBanner } from './HeaderBanner';
 import { NavBar } from './NavBar';
 
-function Header() {
+function Header(props) {
   return (
     <div className="Header">
-      <HeaderBanner></HeaderBanner>
+      <HeaderBanner value={props.value}></HeaderBanner>
       <NavBar></NavBar>
     </div>
   );

@@ -14,9 +14,19 @@ function CartItem(props) {
   }
 
   const quantityList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-  const [quantity, useQuantity] = useState(order.quantity);
+  const [quantity, setQuantity] = useState(order.quantity);
   const [quantityDropDownOpen, setQuantityDropDownOpen] = useState(false);
   const quantityDropDownToggle = () => setQuantityDropDownOpen((prevState) => !prevState);
+
+  function changeQuantity(event) {
+    const newQuantity = parseInt(event.target.innerHTML);
+    setQuantity(newQuantity);
+    props.quantityClick(order.id, newQuantity);
+  }
+
+  function removeOrder(event) {
+    props.removeClick(order.id);
+  }
 
   return (
     <div className='CartItem'>
@@ -35,7 +45,7 @@ function CartItem(props) {
               <DropdownMenu id="quantityDropdownMenu">
                 {quantityList.map((quantity) => {
                   return (
-                    <DropdownItem key={quantity}>{quantity}</DropdownItem>
+                    <DropdownItem key={quantity} onClick={changeQuantity}>{quantity}</DropdownItem>
                   );
                 })}
               </DropdownMenu>
@@ -57,7 +67,7 @@ function CartItem(props) {
             <span id="priceValue">{order.shirt.price}</span>
           </div>
 
-          <button id="removeButton">Remove</button>
+          <button id="removeButton" onClick={removeOrder}>Remove</button>
         </div>
       </div>
     </div>

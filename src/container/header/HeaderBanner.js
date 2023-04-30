@@ -3,8 +3,21 @@ import { routes } from '../../shared/appRoutes';
 import LogoImage from '../../assets/images/logo.png';
 import CartImage from '../../assets/images/cart.svg';
 import { Link, NavLink as RouterNavLink } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { TimeContext, getOrders } from '../../shared/context';
 
-function HeaderBanner() {
+function HeaderBanner(props) {
+  let shopList = getOrders();
+
+  function updateShopList() {
+    shopList = getOrders();
+  }
+
+  function updateCart() {
+    updateShopList();
+    return shopList.orders.map((order) => parseInt(order.quantity)).reduce((a, b) => a + b, 0);
+  }
+
   return (
     <div className="HeaderBanner">
       <div id="headerLogo">
@@ -17,10 +30,10 @@ function HeaderBanner() {
         <div id="companyName">Scotty Shirts U Illustrate (SSUI)</div>
       </div>
 
-      <Link className='headerCart' tag={RouterNavLink} to={routes.notFound}>
+      <Link className='headerCart' tag={RouterNavLink} to={routes.cart}>
         <div>
           <img src={CartImage} alt="A shopping cart" />
-          <div id='cartCount'> 0 </div>
+          <div id='cartCount'>{updateCart()}</div>
         </div>
       </Link >
     </div >

@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { DetailColorButton } from './DetailColorButton';
 import { useState } from 'react';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { TimeContext, getOrders } from '../../shared/context';
 
 function ProductDetailPage() {
   const shirt = useLocation().state?.shirt;
@@ -60,11 +61,8 @@ function ProductDetailPage() {
     setBuySize(event.target.innerHTML);
   }
 
-  function addShopItem() {
-    let shopList = JSON.parse(localStorage.getItem('shopList')) || {
-      orderId: 0,
-      orders: []
-    };
+  function addShopItem(event) {
+    let shopList = getOrders();
 
     shopList.orders.push({
       id: shopList.orderId,
@@ -74,7 +72,7 @@ function ProductDetailPage() {
       size: buySize
     });
     shopList.orderId += 1;
-    localStorage.setItem('shopList', JSON.stringify(shopList));
+    sessionStorage.setItem('shopList_' + TimeContext.current, JSON.stringify(shopList));
   }
 
   return (
@@ -107,7 +105,7 @@ function ProductDetailPage() {
 
             <div id="shirtQuantities">
               <span id="shirtQuantity"> Quantity: </span><br></br>
-              <Dropdown isOpen={quantityDropDownOpen} toggle={quantityDropDownToggle} direction="up">
+              <Dropdown isOpen={quantityDropDownOpen} toggle={quantityDropDownToggle} direction="down">
                 <DropdownToggle id="shirtQuantityDropdownToggle" caret>{buyQuantity}</DropdownToggle>
                 <DropdownMenu>
                   {quantityList.map((quantity) => {
@@ -121,7 +119,7 @@ function ProductDetailPage() {
 
             <div id="shirtSizes">
               <span id="shirtSize"> Size: </span><br></br>
-              <Dropdown isOpen={sizeDropDownOpen} toggle={sizeDropDownToggle} direction='up'>
+              <Dropdown isOpen={sizeDropDownOpen} toggle={sizeDropDownToggle} direction='down'>
                 <DropdownToggle id="shirtSizeDropdownToggle" caret>{buySize}</DropdownToggle>
                 <DropdownMenu>
                   {sizeList.map((size) => {
