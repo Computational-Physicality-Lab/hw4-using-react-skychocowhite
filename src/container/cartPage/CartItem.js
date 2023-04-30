@@ -1,6 +1,8 @@
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import './CartItem.css';
 import { useState } from 'react';
+import { Link, NavLink as RouterNavLink } from 'react-router-dom';
+import { routes } from '../../shared/appRoutes';
 
 function CartItem(props) {
   const order = props.order;
@@ -30,12 +32,11 @@ function CartItem(props) {
 
   return (
     <div className='CartItem'>
-      <hr></hr>
       <h3>{order.shirt.name}</h3>
       <div id="itemSection">
-        <div id="orderImg">
+        <Link id="orderImg" tag={RouterNavLink} to={routes.productDetail} state={{ shirt: order.shirt }}>
           <img src={getShirtImg()} alt={`A T-shirt with ${order.color} color`}></img>
-        </div>
+        </Link>
 
         <div id="orderInformation">
           <div id="quantitySection">
@@ -70,6 +71,7 @@ function CartItem(props) {
           <button id="removeButton" onClick={removeOrder}>Remove</button>
         </div>
       </div>
+      <hr></hr>
     </div>
   );
 }

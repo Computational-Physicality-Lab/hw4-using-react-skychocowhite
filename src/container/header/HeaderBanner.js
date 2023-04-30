@@ -3,10 +3,9 @@ import { routes } from '../../shared/appRoutes';
 import LogoImage from '../../assets/images/logo.png';
 import CartImage from '../../assets/images/cart.svg';
 import { Link, NavLink as RouterNavLink } from 'react-router-dom';
-import { useContext, useState } from 'react';
-import { TimeContext, getOrders } from '../../shared/context';
+import { getOrders } from '../../shared/context';
 
-function HeaderBanner(props) {
+function HeaderBanner() {
   let shopList = getOrders();
 
   function updateShopList() {

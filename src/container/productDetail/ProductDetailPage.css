@@ -5,12 +5,16 @@
 
 #shirtInformation {
   display: flex;
-  column-gap: 2rem;
+  justify-content: center;
+  column-gap: 3rem;
 }
 
 #shirtImg {
-  width: 100%;
-  height: 100%;
+  width: 40%;
+}
+
+#shirtDetail {
+  width: 40%;
 }
 
 #shirtPrice {

@@ -5,31 +5,81 @@ import { routes } from '../../shared/appRoutes';
 import { Link, NavLink as RouterNavLink, useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { DetailColorButton } from './DetailColorButton';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import { TimeContext, getOrders } from '../../shared/context';
+import notFound from '../../assets/shirt_images/not-found.png';
 
 function ProductDetailPage() {
   const shirt = useLocation().state?.shirt;
-  const shirtColors = Object.keys(shirt.colors);
+  const shirtColors = (shirt.colors === undefined || Object.keys(shirt.colors).length === 0) ? undefined : Object.keys(shirt.colors);
 
-  function changeShirtImg() {
-    if (shirtColor === 'default') {
-      return shirt.default[shirtSide];
-    } else {
-      return shirt.colors[shirtColor][shirtSide];
-    }
-  }
-
-  const [shirtSide, setShirtSide] = useState("front");
+  const [shirtSide, setShirtSide] = useState(useLocation().state?.defaultSide);
   function changeSide(event) {
-    setShirtSide(event.target.innerHTML.toLowerCase());
+    let newSide = event.target.innerHTML.toLowerCase();
+    console.log(newSide);
+    setShirtSide(newSide);
   }
 
-  const [shirtColor, setShirtColor] = useState("default");
+  const [shirtColor, setShirtColor] = useState(useLocation().state?.defaultColor);
   function changeShirtColor(event) {
-    setShirtColor(event.target.innerHTML);
+    let newColor = event.target.innerHTML;
+    console.log(newColor);
+    setShirtColor(newColor);
   }
+
+  const [shirtImg, setShirtImg] = useState(useLocation().state?.defaultImg);
+
+  function changeShirtImg(newColor, newSide) {
+    console.log(newColor, newSide);
+    if (newColor === undefined || newSide === undefined) {
+      setShirtImg(notFound);
+    } else if (newColor === 'default') {
+      if (shirt.default === undefined || shirt.default[newSide] === undefined) {
+        setShirtImg(notFound);
+      } else {
+        setShirtImg(shirt.default[newSide]);
+      }
+    } else {
+      if (shirt.colors[newColor] === undefined || shirt.colors[newColor][newSide] === undefined) {
+        setShirtImg(notFound);
+      } else {
+        console.log(shirt.colors[newColor][newSide]);
+        setShirtImg(shirt.colors[newColor][newSide]);
+      }
+    }
+    console.log(shirtImg);
+  }
+
+  useEffect(() => {
+    if (shirtColor === undefined || shirtSide === undefined) {
+      if (shirt.default?.front !== undefined) {
+        setShirtSide('front');
+        setShirtColor('default');
+        setShirtImg(shirt.default.front);
+      } else if (shirt.colors !== undefined && shirtColors.filter((color) => shirt.colors[color].front !== undefined).length > 0) {
+        let color = shirtColors.filter((color) => shirt.colors[color].front !== undefined)[0];
+        setShirtSide('front');
+        setShirtColor(color);
+        setShirtImg(shirt.colors[color].front);
+      } else if (shirt.default?.back !== undefined) {
+        setShirtSide('back');
+        setShirtColor('default');
+        setShirtImg(shirt.default.back);
+      } else if (shirt.colors !== undefined && shirtColors.filter((color) => shirt.colors[color].back !== undefined).length > 0) {
+        let color = shirtColors.filter((color) => shirt.colors[color].back !== undefined)[0];
+        setShirtSide('back');
+        setShirtColor(color);
+        setShirtImg(shirt.colors[color].back);
+      } else {
+        setShirtSide('undefined');
+        setShirtColor('undefined');
+        setShirtImg(notFound);
+      }
+    } else {
+      changeShirtImg(shirtColor, shirtSide);
+    }
+  }, [shirtColor, shirtSide]);
 
   const quantityList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
   const [buyQuantity, setBuyQuantity] = useState(1);
@@ -78,13 +128,18 @@ function ProductDetailPage() {
   return (
     <div className="ProductDetailPage">
       <Header></Header>
+
       <div className="shirtDetailSection">
         <h2> {shirt.name} </h2>
         <div id="shirtInformation">
-          <img id="shirtImg" src={changeShirtImg()} alt="A T-shirt" />
-          <div>
-            <div id="shirtPrice">{shirt.price}</div>
-            <div id="shirtDescription">{shirt.description}</div>
+          <img id="shirtImg" src={shirtImg} alt="A T-shirt" />
+          <div id="shirtDetail">
+            {shirt.price === undefined
+              ? <div id="shirtPrice">The shirt is sold out :(</div>
+              : <div id="shirtPrice">{shirt.price}</div>}
+            {shirt.description === undefined
+              ? <div></div>
+              : <div id='shirtDescription'>{shirt.description}</div>}
 
             <div id="shirtSides">
               <span id="shirtSide"> Side: </span><br></br>
@@ -95,11 +150,14 @@ function ProductDetailPage() {
             <div id="shirtColors">
               <span id="shirtColor"> Color: </span><br></br>
               <div id="shirtColorButtons">
-                {shirtColors.map((color) => {
-                  return (
-                    <DetailColorButton key={color} color={color} onClick={changeShirtColor}></DetailColorButton>
-                  );
-                })}
+                {shirtColors === undefined
+                  ? <div>There is no color available now :(</div>
+                  : shirtColors.map((color) => {
+                    return (
+                      <DetailColorButton key={color} color={color} onClick={changeShirtColor}></DetailColorButton>
+                    );
+                  }
+                  )}
               </div>
             </div>
 
@@ -133,12 +191,15 @@ function ProductDetailPage() {
 
             <div id='shirtSubmit'>
               <Link className="submitButton" tag={RouterNavLink} to={routes.cart} onClick={addShopItem} style={{
-                pointerEvents: buySize.startsWith("Size") ? "none" : ""
+                pointerEvents: (buySize.startsWith("Size")
+                  || shirtColors === undefined
+                  || shirt.price === undefined) ? "none" : ""
               }}>Add To Cart</Link>
             </div>
           </div>
         </div>
       </div>
+
       <Footer></Footer>
     </div >
   );

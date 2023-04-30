@@ -73,7 +73,10 @@ function CartPage() {
 
       <div id="cartSection">
         <div id="cartProductsBar">
-          <h2>My Cart ({shirtCounts})</h2>
+          <div id="cartProductTitle">
+            <h2>My Cart ({shirtCounts})</h2>
+            <hr></hr>
+          </div>
           {shirtCounts !== 0
             ? shopList.orders.slice().reverse().map((order) => {
               return (

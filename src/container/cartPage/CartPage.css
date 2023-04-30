@@ -11,6 +11,19 @@
   width: 50%;
 }
 
+#cartProductTitle {
+  background-color: white;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+#cartProductTitle>hr {
+  border: 2px solid #c51230;
+  opacity: 1;
+}
+
 #cartSummaryBar {
   width: 30%;
   height: 100%;

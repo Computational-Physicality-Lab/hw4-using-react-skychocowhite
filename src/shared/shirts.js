@@ -37,6 +37,10 @@ export default [{
     "description": "Once upon a time, a mighty guide guarded the intersection of Forbes and Morewood, and would dutifully direct distracted college students when it was safe to cross the street. Its voice was soothing, strong, and steady. Its name was beep boop.",
     "price": "$19.99",
     "colors": {
+        "red": {
+            "front": BeepBoopRedFront,
+            "back": BeepBoopRedBack
+        },
         "white": {
             "front": BeepBoopWhiteFront,
             "back": BeepBoopWhiteBack
@@ -48,15 +52,7 @@ export default [{
         "pink": {
             "front": BeepBoopPinkFront,
             "back": BeepBoopPinkBack
-        },
-        "red": {
-            "front": BeepBoopRedFront,
-            "back": BeepBoopRedBack
         }
-    },
-    "default": {
-        "front": DefaultMaleFront,
-        "back": DefaultMaleBack
     }
 },
 {
@@ -64,13 +60,13 @@ export default [{
     "description": "As you move in to campus, one of the first memories so many students have is driving up to their dorm, unloading their bags, and moving in. How do they arrive to campus? By car, of course!",
     "price": "$10.99",
     "colors": {
-        "white": {
-            "front": CarWhiteFront,
-            "back": CarWhiteBack
-        },
         "blue": {
             "front": CarBlueFront,
             "back": CarBlueBack
+        },
+        "white": {
+            "front": CarWhiteFront,
+            "back": CarWhiteBack
         },
         "green": {
             "front": CarGreenFront,
@@ -84,29 +80,21 @@ export default [{
             "front": CarRedFront,
             "back": CarRedBack
         }
-    },
-    "default": {
-        "front": DefaultFemaleFront,
-        "back": DefaultFemaleBack
     }
 },
 {
-    "name": "Forever Plaid",
     "price": "$13.99",
+    "name": "Forever Plaid",
     "description": "Proudly wear your tartan plaid as a patch on your front shirt pocket. And on the back, ask the important question that all CMU students should know the answer to: got plaid?",
     "colors": {
-        "white": {
-            "front": PlaidWhiteFront,
-            "back": PlaidWhiteBack
-        },
         "pink": {
             "front": PlaidPinkFront,
             "back": PlaidPinkBack
+        },
+        "white": {
+            "front": PlaidWhiteFront,
+            "back": PlaidWhiteBack
         }
-    },
-    "default": {
-        "front": DefaultFemaleFront,
-        "back": DefaultFemaleBack
     }
 },
 {
@@ -119,8 +107,4 @@ export default [{
             "back": MelonWhiteBack
         }
     },
-    "default": {
-        "front": DefaultMaleFront,
-        "back": DefaultMaleBack
-    }
 }];
