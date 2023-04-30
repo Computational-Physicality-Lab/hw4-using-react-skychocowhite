@@ -26,13 +26,13 @@ import PlaidPinkBack from "../assets/shirt_images/plaid-pink-back.png";
 import MelonWhiteFront from "../assets/shirt_images/melon-white-front.png";
 import MelonWhiteBack from "../assets/shirt_images/melon-white-back.png";
 
-import DefaultMaleFront from "../assets/shirt_images/default-m-front.png";
-import DefaultMaleBack from "../assets/shirt_images/default-m-back.png";
-import DefaultFemaleFront from "../assets/shirt_images/default-w-front.png";
-import DefaultFemaleBack from "../assets/shirt_images/default-w-back.png";
+// import DefaultMaleFront from "../assets/shirt_images/default-m-front.png";
+// import DefaultMaleBack from "../assets/shirt_images/default-m-back.png";
+// import DefaultFemaleFront from "../assets/shirt_images/default-w-front.png";
+// import DefaultFemaleBack from "../assets/shirt_images/default-w-back.png";
 
 
-export default [{
+const shirts = [{
     "name": "Beep Boop",
     "description": "Once upon a time, a mighty guide guarded the intersection of Forbes and Morewood, and would dutifully direct distracted college students when it was safe to cross the street. Its voice was soothing, strong, and steady. Its name was beep boop.",
     "price": "$19.99",
@@ -108,3 +108,5 @@ export default [{
         }
     },
 }];
+
+export default shirts;

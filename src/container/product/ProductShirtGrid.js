@@ -43,7 +43,7 @@ function ProductShirtGrid(props) {
   return (
     <div className="ProductShirtGrid">
       <Link tag={RouterNavLink} to={routes.productDetail} state={{ shirt: shirt, defaultSide: shirtSide, defaultColor: shirtColor, defaultImg: shirtImg }}>
-        <img src={shirtImg}></img>
+        <img src={shirtImg} alt="A shirt with specific color and side"></img>
       </Link>
 
       <p className="shirtName">
