@@ -24,3 +24,8 @@ After using React, it exactly saves a lot of time writing duplicate codes across
 1. Pure JavaScript sometimes leads to duplicate codes more often than React.
 2. The concept of the component in React makes the maintenance more convenient.
 3. It needs time to understand and configure when using React.
+
+***
+
+## Is There any Funny Things?
+Still nothing :(
